@@ -9,6 +9,16 @@ var jwtIssuer = builder.Configuration.GetSection("Jwt:Issuer").Get<string>();
 var jwtAudience = builder.Configuration.GetSection("Jwt:Audience").Get<string>();
 var jwtKey = builder.Configuration.GetSection("Jwt:Key").Get<string>();
 
+var AllowAllCors = "AllowAllCors";
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: AllowAllCors,
+        builder => builder.AllowAnyOrigin()
+            .AllowAnyMethod()
+            .AllowAnyHeader());
+});
+
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
     {
@@ -39,6 +49,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseCors(AllowAllCors);
 
 app.UseAuthorization();
 

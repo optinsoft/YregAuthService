@@ -52,6 +52,7 @@ namespace YregAuthService.Controllers
 
             return Ok(new LoginResponse
                 {
+                    success = true,
                     token = new JwtSecurityTokenHandler().WriteToken(Sectoken)
                 });
         }

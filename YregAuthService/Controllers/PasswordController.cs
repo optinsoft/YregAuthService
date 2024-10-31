@@ -17,6 +17,7 @@ namespace YregAuthService.Controllers
             }
             return Ok(new EncryptPasswordResponse
             {
+                success = true,
                 encrypted = PasswordManager.EncryptPassword(encryptRequest.password)
             });
         }
