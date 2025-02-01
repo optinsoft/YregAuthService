@@ -4,7 +4,7 @@ namespace YregAuthService.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class PasswordController : Controller
+    public class PasswordController : ControllerBase
     {
         [HttpPost("Encrypt")]
         [ProducesResponseType(StatusCodes.Status200OK)]
