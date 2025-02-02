@@ -4,6 +4,8 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Net;
 using System.Text;
 using System.Security.Cryptography;
+using YregAuthService.Requests;
+using YregAuthService.Responses;
 
 namespace YregAuthService.Controllers
 {

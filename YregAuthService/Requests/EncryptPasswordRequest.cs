@@ -1,9 +1,8 @@
-﻿namespace YregAuthService
+﻿namespace YregAuthService.Requests
 {
-    public class LoginRequest
+    public class EncryptPasswordRequest
     {
 #pragma warning disable IDE1006 // Naming Styles
-        public string? username { get; set; }
         public string? password { get; set; }
 #pragma warning restore IDE1006 // Naming Styles
     }

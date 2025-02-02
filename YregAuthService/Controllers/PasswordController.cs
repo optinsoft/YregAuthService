@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using YregAuthService.Requests;
+using YregAuthService.Responses;
 
 namespace YregAuthService.Controllers
 {
