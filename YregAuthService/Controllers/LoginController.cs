@@ -2,8 +2,9 @@
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Net;
-using System.Text;
+using System.Security.Claims;
 using System.Security.Cryptography;
+using System.Text;
 using YregAuthService.Requests;
 using YregAuthService.Responses;
 
@@ -44,9 +45,18 @@ namespace YregAuthService.Controllers
             var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwt_key));
             var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
 
+            var claims = new List<Claim>();
+            if (loginUser.Name != null) 
+            {
+                claims.Add(new Claim("name", loginUser.Name));
+            };
+            claims.Add(new Claim("role", loginUser.Role ?? "user"));
+
+            var identity = new ClaimsIdentity(claims);
+
             var Sectoken = new JwtSecurityToken(_jwt_issuer,
               _jwt_expire_audience,
-              null,
+              identity.Claims,
               expires: DateTime.Now.AddMinutes(_jwt_expire_minutes),
               signingCredentials: credentials);
 
